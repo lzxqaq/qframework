@@ -177,22 +177,22 @@ public:
     /**
      * @brief 设置某一列的关系映射
      */
-    void setRelationMap(int column, const QMap<QVariant, QVariant> &relationMap);
+    void setRelationMap(int column, const QMap<QString, QVariant> &relationMap);
 
     /**
      * @brief 设置某一列的关系映射
      */
-    void setRelationMap(const QString &columnName, const QMap<QVariant, QVariant> &relationMap);
+    void setRelationMap(const QString &columnName, const QMap<QString, QVariant> &relationMap);
 
     /**
      * @brief 返回某一列的关系映射
      */
-    QMap<QVariant, QVariant> getRelationMap(int column) const;
+    QMap<QString, QVariant> getRelationMap(int column) const;
 
     /**
      * @brief 返回某一列的关系映射
      */
-    QMap<QVariant, QVariant> getRelationMap(const QString &columnName) const;
+    QMap<QString, QVariant> getRelationMap(const QString &columnName) const;
 
 
     /**
@@ -209,7 +209,7 @@ public:
 protected:
     QStringList m_headers; //表头
     QStringList m_headerKeys; //表头字段
-    QHash<int, QMap<QVariant, QVariant>> m_relationMaps; //关系映射集合
+    QHash<int, QMap<QString, QVariant>> m_relationMaps; //关系映射集合
     RowItem* m_rootItem; //根项
 
     friend class RowItem;

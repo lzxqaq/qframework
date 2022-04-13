@@ -1,6 +1,7 @@
 #include "mvvmviewcontainer.h"
 
 Mvvms::IMvvmViewPair::IMvvmViewPair(QObject *parent)
+    :   IDIObj(parent)
 {
 
 }

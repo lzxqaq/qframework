@@ -12,7 +12,7 @@ class MVVM_EXPORT NavigatorViewModelBase : public ViewModelBase{
     explicit NavigatorViewModelBase(Mvvms::INavigator *navigator, QObject *parent = 0);
             ~NavigatorViewModelBase();
     QVariant result;
-            INavigator *navigator;
+    INavigator *navigator;
 };
 typedef QSharedPointer<NavigatorViewModelBase> NavigatorViewModelBasePtr;
 }

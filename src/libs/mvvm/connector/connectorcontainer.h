@@ -14,11 +14,11 @@ namespace Connector {
     public:
 
         //绑定的时候调用的函数
-        std::function<bool(QObject *obj1, QObject *obj2)> binding;
+        std::function<bool(QObject *obj1, QObject *obj2)> binding = nullptr;
         //解绑的时候调用的函数
-        std::function<bool(QObject *obj1, QObject *obj2)> unbind;
+        std::function<bool(QObject *obj1, QObject *obj2)> unbind = nullptr;
         //匹配两者是否可以绑定（解绑）的函数 如果未nullptr 默认都需要绑定（解绑）
-        std::function<bool(QObject *obj1, QObject *obj2)> match;
+        std::function<bool(QObject *obj1, QObject *obj2)> match = nullptr;
 
         ConnectorPair(QMetaObject metaObject1, QMetaObject metaObject2);
         ~ConnectorPair();
@@ -50,6 +50,33 @@ namespace Connector {
     public:
         explicit IConnectorContainer(QObject *parent = 0);
         ~IConnectorContainer();
+
+        template<typename T1, typename T2>
+        void binding(std::function<bool(QObject *obj1, QObject *obj2)> bindingFunc,
+                     std::function<bool(QObject *obj1, QObject *obj2)> unbindFunc = nullptr,
+                     std::function<bool(QObject *obj1, QObject *obj2)> matchFunc = nullptr)
+        {
+            auto metaObject1 = static_cast<T1*>(0)->staticMetaObject;
+            auto metaObject2 = static_cast<T2*>(0)->staticMetaObject;
+            auto pair = new ConnectorPair(metaObject1, metaObject2);
+            pair->binding = bindingFunc;
+            pair->unbind = unbindFunc;
+            pair->match = matchFunc;
+            _map.append(pair);
+        }
+
+        void Add(QObject *obj);
+        void Remove(QObject *obj);
+    private:
+        QList<ConnectorPair *> _map;
+    };
+
+    class MVVM_EXPORT DefaultConnectorContainer : public IConnectorContainer
+    {
+        Q_OBJECT
+    public:
+        Q_INVOKABLE explicit DefaultConnectorContainer(QObject *parent = 0);
+        ~DefaultConnectorContainer();
     };
 }
 

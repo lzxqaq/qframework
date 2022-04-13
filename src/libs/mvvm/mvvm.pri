@@ -6,11 +6,13 @@ DEFINES += MVVM_LIBRARY
 CONFIG += c++11
 
 SOURCES += \
-    $$PWD/connector/connector.cpp \
+    $$PWD/connector/connectorcontainer.cpp \
     $$PWD/models/rowitem.cpp \
     $$PWD/models/rowitemmodel.cpp \
     $$PWD/navigators/mvvmviewcontainer.cpp \
+    $$PWD/navigators/navigator.cpp \
     $$PWD/navigators/navigatorsetting.cpp \
+    $$PWD/properties/propertybase.cpp \
     $$PWD/viewmodels/navigatorviewmodel.cpp \
     $$PWD/viewmodels/viewmodel.cpp \
     $$PWD/views/mvvmview.cpp

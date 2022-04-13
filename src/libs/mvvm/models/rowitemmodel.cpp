@@ -68,7 +68,7 @@ QVariant RowItemModel::data(const QModelIndex &index, int role) const
         }
         else
         {
-            return m_relationMaps.value(column).value(data);
+            return m_relationMaps.value(column).value(data.toString());
         }
     }
     return QVariant();
@@ -268,12 +268,12 @@ QVariantMap RowItemModel::getDataMap(RowItem *item) const
     return result;
 }
 
-void RowItemModel::setRelationMap(int column, const QMap<QVariant, QVariant> &relationMap)
+void RowItemModel::setRelationMap(int column, const QMap<QString, QVariant> &relationMap)
 {
     m_relationMaps.insert(column, relationMap);
 }
 
-void RowItemModel::setRelationMap(const QString &columnName, const QMap<QVariant, QVariant> &relationMap)
+void RowItemModel::setRelationMap(const QString &columnName, const QMap<QString, QVariant> &relationMap)
 {
     int index = m_headerKeys.indexOf(columnName);
     if (index >= 0)
@@ -346,12 +346,12 @@ void RowItemModel::constructTree(const QList<QVariantList> &source, int idIndex,
     }
 }
 
-QMap<QVariant, QVariant> RowItemModel::getRelationMap(int column) const
+QMap<QString, QVariant> RowItemModel::getRelationMap(int column) const
 {
     return m_relationMaps.value(column);
 }
 
-QMap<QVariant, QVariant> RowItemModel::getRelationMap(const QString &columnName) const
+QMap<QString, QVariant> RowItemModel::getRelationMap(const QString &columnName) const
 {
     int column = m_headerKeys.indexOf(columnName);
     return m_relationMaps.value(column);
