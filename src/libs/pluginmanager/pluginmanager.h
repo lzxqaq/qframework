@@ -2,7 +2,6 @@
 #define PLUGINMANAGER_H
 
 #include "pluginmanager_global.h"
-#include "pluginmetadata.h"
 #include <QObject>
 #include <QPluginLoader>
 #include <QVariant>
@@ -46,9 +45,6 @@ public:
 private:
     static PluginManager *s_instance;
     PluginManagerPrivate *d;
-
-private slots:
-    void recMsgFromManager(PluginMetaData&);
 
 };
 

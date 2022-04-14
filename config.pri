@@ -1,0 +1,1 @@
+IDE_APP_PATH = $$IDE_BUILD_TREE/bin

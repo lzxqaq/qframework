@@ -5,4 +5,4 @@ SUBDIRS =   \
     ioc \
     mvvm \
     orm \
-    pluginmanager \
+    pluginmanager

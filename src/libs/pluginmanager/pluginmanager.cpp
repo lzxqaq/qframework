@@ -1,6 +1,6 @@
 ﻿#include "pluginmanager.h"
 #include "pluginmanagerprivate.h"
-#include "plugininterface.h"
+#include "iplugin.h"
 #include <QDir>
 #include <QCoreApplication>
 #include <QJsonArray>
@@ -67,11 +67,11 @@ void PluginManager ::loadPlugin(const QString &filepath)
     if(loader->load())
     {
         // 如果继承自 Plugin，则认为是自己的插件（防止外部插件注入）。
-        PluginInterface *plugin = qobject_cast<PluginInterface *>(loader->instance());
+        IPlugin *plugin = qobject_cast<IPlugin *>(loader->instance());
         if(plugin)
         {
             d->m_loaders.insert(filepath, loader);
-            plugin->connectTosendMsgToManager(this, SLOT(recMsgFromManager(PluginMetaData&)), true);
+            plugin->initialize();
         }
         else
         {
@@ -115,18 +115,4 @@ QVariant PluginManager ::getPluginName(QPluginLoader *loader)
         return d->m_names.value(d->m_loaders.key(loader));
     else
         return "";
-}
-
-void PluginManager ::recMsgFromManager(PluginMetaData &msg)
-{
-     //qDebug()  <<"PluginManager ::recMsgFromManager..."<< msg.dest;
-     auto loader = getPlugin(msg.dest);
-     if(loader)
-     {
-         auto plugin = qobject_cast<PluginInterface*>(loader->instance());;
-         if(plugin)
-         {
-             plugin->recMsgFromManager(msg);
-         }
-     }
 }

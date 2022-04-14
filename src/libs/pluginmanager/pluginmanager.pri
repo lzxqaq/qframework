@@ -6,17 +6,18 @@ DEFINES += PLUGINMANAGER_LIBRARY
 CONFIG += c++11
 
 SOURCES += \
+    $$PWD/iplugin.cpp \
     $$PWD/pluginmanager.cpp \
     $$PWD/pluginmanagerprivate.cpp
 
 
 
 HEADERS += \
-    $$PWD/plugininterface.h \
+    $$PWD/iplugin.h \
+    $$PWD/iplugin_p.h \
     $$PWD/pluginmanager.h \
     $$PWD/pluginmanager_global.h \
-    $$PWD/pluginmanagerprivate.h \
-    $$PWD/pluginmetadata.h
+    $$PWD/pluginmanagerprivate.h
 
 
 
