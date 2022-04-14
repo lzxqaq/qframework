@@ -1,2 +1,2 @@
-include(orm.pri)
-include(orm_dependencies.pri)
+include(../../library.pri)
+include(src/orm-lib.pri)

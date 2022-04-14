@@ -1,3 +1,4 @@
-include(mvvm.pri)
-include(mvvm_dependencies.pri)
+include(../../library.pri)
+include(src/mvvm-lib.pri)
 
+include(../ioc/ioc-include.pri)

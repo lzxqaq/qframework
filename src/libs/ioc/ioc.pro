@@ -1,2 +1,2 @@
-include(ioc.pri)
-include(ioc_dependencies.pri)
+include(../../library.pri)
+include(src/ioc-lib.pri)
